@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import ToDo from "./ToDo";
+import ToDo from "./Todo";
 import ControlPanel from "./ControlPanel";
 
 export default {
