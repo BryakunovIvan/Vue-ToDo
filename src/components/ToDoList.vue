@@ -1,11 +1,7 @@
 <template>
   <div class="information-table">
     <h1>Todo list</h1>
-    <button 
-        v-on:click="addToDo({title:'asdasdasd',description:'asdasdasd'})"
-    >
-    AddToDo
-    </button>
+    <ControlPanel v-bind:addToDo="addToDo"/>
     <ToDo
       v-for="todo in todos"
       v-bind:title="todo.title"
@@ -18,6 +14,7 @@
 
 <script>
 import ToDo from "./ToDo";
+import ControlPanel from "./ControlPanel";
 
 export default {
   name: "ToDoList",
@@ -30,10 +27,8 @@ export default {
     };
   },
   components: {
-    ToDo
-  },
-  updated() {
-    console.log(this.todos);
+    ToDo,
+    ControlPanel,
   }
 };
 </script>

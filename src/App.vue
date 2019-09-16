@@ -19,14 +19,16 @@ export default {
           id: Math.random(),
           title: "First task",
           description: "This is description",
-          date: new Date().toISOString().slice(0, 10)
+          date: new Date().toISOString().slice(0, 10),
+          checked: false, //TODO
         }
       ]
     };
   },
   methods: {
     addToDo({ title, description, date }) {
-      date = date || new Date().toISOString().slice(0, 10);
+      date = date || "Без даты";
+      description = description;
       this.todos.push({
         id: Math.random(),
         title,
@@ -34,6 +36,9 @@ export default {
         date
       });
     }
+  },
+  created() {
+
   }
 };
 </script>
