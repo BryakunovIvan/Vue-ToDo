@@ -1,0 +1,50 @@
+<template>
+  <div id="app">
+    <InformatinoTable v-bind:todos="todos" v-bind:addToDo="addToDo" />
+  </div>
+</template>
+
+<script>
+import InformatinoTable from "./components/InformationTable";
+
+export default {
+  name: "app",
+  components: {
+    InformatinoTable
+  },
+  data() {
+    return {
+      todos: [
+        {
+          id: Math.random(),
+          title: "First task",
+          description: "This is description",
+          date: new Date().toISOString().slice(0, 10)
+        }
+      ]
+    };
+  },
+  methods: {
+    addToDo({ title, description, date }) {
+      date = date || new Date().toISOString().slice(0, 10);
+      this.todos.push({
+        id: Math.random(),
+        title,
+        description,
+        date
+      });
+    }
+  }
+};
+</script>
+
+<style>
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
