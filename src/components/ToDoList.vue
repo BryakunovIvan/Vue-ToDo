@@ -6,7 +6,7 @@
     >
     AddToDo
     </button>
-    <Todo
+    <ToDo
       v-for="todo in todos"
       v-bind:title="todo.title"
       v-bind:description="todo.description"
@@ -17,21 +17,20 @@
 </template>
 
 <script>
-import Todo from "./Todo";
+import ToDo from "./ToDo";
 
 export default {
-  name: "InformationTable",
+  name: "ToDoList",
   props: {
     todos: Array,
     addToDo: Function
   },
   data() {
     return {
-      greeting: "Hello"
     };
   },
   components: {
-    Todo
+    ToDo
   },
   updated() {
     console.log(this.todos);

@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <InformatinoTable v-bind:todos="todos" v-bind:addToDo="addToDo" />
+    <ToDoList v-bind:todos="todos" v-bind:addToDo="addToDo" />
   </div>
 </template>
 
 <script>
-import InformatinoTable from "./components/InformationTable";
+import ToDoList from "./components/ToDoList";
 
 export default {
   name: "app",
   components: {
-    InformatinoTable
+    ToDoList
   },
   data() {
     return {
