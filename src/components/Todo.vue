@@ -8,7 +8,7 @@
       <p class="todo-date">{{date}}</p>
     </div>
     <div class="todo-footer">
-      <p class="todo-description">{{description}}</p>
+      <p v-if="description" class="todo-description">{{description}}</p>
     </div>
   </div>
 </template>
@@ -57,11 +57,13 @@ export default {
 .todo-description,
 .todo-name {
   white-space: nowrap;
-}
-.todo-description,
-.todo-name {
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.todo-description {
+  padding-left: 20px;
+  box-sizing: border-box;
+  margin: 5px 0
 }
 </style>
