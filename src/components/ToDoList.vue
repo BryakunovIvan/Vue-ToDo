@@ -7,6 +7,7 @@
       v-bind:title="todo.title"
       v-bind:description="todo.description"
       v-bind:date="todo.date"
+      v-bind:checked="todo.checked"
       v-bind:key="todo.id"
     />
   </div>

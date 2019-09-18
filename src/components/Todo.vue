@@ -1,7 +1,10 @@
 <template>
   <div class="todo">
     <div class="todo-head">
-      <h4 class="todo-title">{{title}}</h4>
+      <div class="todo-title">
+        <input class="todo-checkbox" v-model="checked" type="checkbox" />
+        <h4 class="todo-name">{{title}}</h4>
+      </div>
       <p class="todo-date">{{date}}</p>
     </div>
     <div class="todo-footer">
@@ -16,7 +19,8 @@ export default {
   props: {
     title: String,
     description: String,
-    date: String
+    date: String,
+    checked: Boolean
   }
 };
 </script>
@@ -25,7 +29,8 @@ export default {
 .todo {
   border: 1px solid rgba(128, 128, 128, 0.603);
   border-radius: 10px;
-  width: 350px;
+  min-width: 320px;
+  max-width: 700px;
   margin: 10px auto;
   padding: 5px;
 }
@@ -35,19 +40,28 @@ export default {
   align-items: center;
 }
 .todo-title {
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  min-width: 50px;
+}
+.todo-name {
   margin: 0;
 }
 .todo-date {
   margin: 0;
+  min-width: 100px;
 }
 .todo-footer {
   text-align: left;
 }
 .todo-description,
-.todo-title {
+.todo-name {
+  white-space: nowrap;
+}
+.todo-description,
+.todo-name {
   text-align: left;
-  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

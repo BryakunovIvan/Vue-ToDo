@@ -1,7 +1,16 @@
 <template>
   <div class="control-panel">
-    <input v-model="title" placeholder="To-do title" />
-    <button v-on:click="handleAddToDo()">Add To-do</button>
+    <div>
+      <input class="control-panel__title" v-model="title" placeholder="To-do title" />
+    </div>
+    <div>
+      <transition name="fade">
+        <input class="control-panel__description" v-if="title" v-model="description" placeholder="Description" />
+      </transition>
+    </div>
+    <transition name="fade">
+      <button v-if="title" v-on:click="handleAddToDo()">Add To-do</button>
+    </transition>
   </div>
 </template>
 
@@ -25,13 +34,30 @@ export default {
       toDefault();
     },
     toDefault() {
-        this.title = '',
-        this.description = '',
-        this.date = ''
+      (this.title = ""), (this.description = ""), (this.date = "");
     }
   }
 };
 </script>
 
 <style>
+.control-panel__description,
+.control-panel__title {
+  width: 100%;
+  max-width: 700px;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: 0.2s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  height: 0px;
+}
+.fade-leave,
+.fade-enter-to {
+  opacity: 1;
+  height: 16px;
+}
 </style>

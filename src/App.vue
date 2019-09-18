@@ -20,7 +20,7 @@ export default {
           title: "First task",
           description: "This is description",
           date: new Date().toISOString().slice(0, 10),
-          checked: false, //TODO
+          checked: true, //TODO
         }
       ]
     };
@@ -29,11 +29,13 @@ export default {
     addToDo({ title, description, date }) {
       date = date || "Без даты";
       description = description;
+      const checked = false;
       this.todos.push({
         id: Math.random(),
         title,
         description,
-        date
+        date,
+        checked
       });
     }
   },
