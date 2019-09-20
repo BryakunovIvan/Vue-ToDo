@@ -1,20 +1,37 @@
 <template>
   <div id="app">
-    <ToDoList v-bind:todos="todos" v-bind:addToDo="addToDo" />
+    <ToDoList 
+      v-bind:todos="unChekedInitialization()" 
+      v-bind:addToDo="addToDo" 
+      v-bind:handleCheck="handleCheck"  
+    />
+    <CheckedToDoList 
+      v-bind:todos="checkedInitialization()"
+      v-bind:handleCheck="handleCheck"  
+    />
   </div>
 </template>
 
 <script>
 import ToDoList from "./components/ToDoList";
+import CheckedToDoList from './components/CheckedToDoList';
 
 export default {
   name: "app",
   components: {
-    ToDoList
+    ToDoList,
+    CheckedToDoList,
   },
   data() {
     return {
       todos: [
+        {
+          id: Math.random(),
+          title: "First task",
+          description: "This is description",
+          date: new Date().toISOString().slice(0, 10),
+          checked: false, //TODO
+        },
         {
           id: Math.random(),
           title: "First task",
@@ -27,7 +44,7 @@ export default {
   },
   methods: {
     addToDo({ title, description, date }) {
-      date = date || "Без даты";
+      date = date || new Date().toISOString().slice(0, 10);
       description = description;
       const checked = false;
       this.todos.push({
@@ -37,10 +54,24 @@ export default {
         date,
         checked
       });
-    }
-  },
-  created() {
-
+    },
+    handleCheck(id) {
+      const currentTodo = this.todos.find(todo => {
+        return todo.id === id;
+      });
+      
+      currentTodo.checked = !currentTodo.checked;
+    },
+    checkedInitialization() {
+      return this.todos.filter(todo => {
+        return todo.checked === true;
+      });
+    },
+    unChekedInitialization() {
+      return this.todos.filter(todo => {
+        return todo.checked == false;
+      })
+    },
   }
 };
 </script>

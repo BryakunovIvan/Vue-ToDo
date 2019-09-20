@@ -2,7 +2,12 @@
   <div class="todo">
     <div class="todo-head">
       <div class="todo-title">
-        <input class="todo-checkbox" v-model="checked" type="checkbox" />
+        <input 
+          class="todo-checkbox" 
+          v-on:click="handleClick" 
+          v-model="checked" 
+          type="checkbox" 
+        />
         <h4 class="todo-name">{{title}}</h4>
       </div>
       <p class="todo-date">{{date}}</p>
@@ -20,7 +25,14 @@ export default {
     title: String,
     description: String,
     date: String,
-    checked: Boolean
+    checked: Boolean,
+    id: Number,
+    handleCheck: Function
+  },
+  methods: {
+    handleClick() {
+      this.handleCheck(this.id);
+    }
   }
 };
 </script>
