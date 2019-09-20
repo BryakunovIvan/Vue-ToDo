@@ -8,7 +8,9 @@
       v-bind:description="todo.description"
       v-bind:date="todo.date"
       v-bind:checked="todo.checked"
+      v-bind:id="todo.id"
       v-bind:key="todo.id"
+      v-bind:handleCheck="handleCheck"
     />
   </div>
 </template>
@@ -21,7 +23,8 @@ export default {
   name: "ToDoList",
   props: {
     todos: Array,
-    addToDo: Function
+    addToDo: Function,
+    handleCheck: Function
   },
   data() {
     return {
