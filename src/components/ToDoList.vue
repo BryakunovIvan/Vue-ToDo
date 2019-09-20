@@ -1,5 +1,5 @@
 <template>
-  <div class="information-table">
+  <div class="to-do-list">
     <h1>Todo list</h1>
     <ControlPanel v-bind:addToDo="addToDo"/>
     <ToDo

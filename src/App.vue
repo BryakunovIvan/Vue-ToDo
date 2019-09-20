@@ -1,20 +1,32 @@
 <template>
   <div id="app">
     <ToDoList v-bind:todos="todos" v-bind:addToDo="addToDo" />
+    <CheckedToDoList v-bind:todos="checkedTodos"/>
   </div>
 </template>
 
 <script>
 import ToDoList from "./components/ToDoList";
+import CheckedToDoList from './components/CheckedToDoList';
 
 export default {
   name: "app",
   components: {
-    ToDoList
+    ToDoList,
+    CheckedToDoList,
   },
   data() {
     return {
       todos: [
+        {
+          id: Math.random(),
+          title: "First task",
+          description: "This is description",
+          date: new Date().toISOString().slice(0, 10),
+          checked: true, //TODO
+        }
+      ],
+      checkedTodos: [
         {
           id: Math.random(),
           title: "First task",
