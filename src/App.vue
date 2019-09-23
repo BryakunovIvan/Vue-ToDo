@@ -6,7 +6,7 @@
       <ToDoList 
         v-bind:todos="unChekedInitialization()" 
         v-bind:addToDo="addToDo" 
-        v-bind:handleCheck="handleCheck"  
+        v-bind:handleCheck="handleCheck"
       />
     </div>
     <div v-on:click="handleCheckedToDoClick" class="checked-to-do">
