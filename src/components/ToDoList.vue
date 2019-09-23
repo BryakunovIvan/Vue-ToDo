@@ -1,7 +1,5 @@
 <template>
   <div class="to-do-list">
-    <h1>Todo list</h1>
-    <ControlPanel v-bind:addToDo="addToDo"/>
     <ToDo
       v-for="todo in todos"
       v-bind:title="todo.title"
