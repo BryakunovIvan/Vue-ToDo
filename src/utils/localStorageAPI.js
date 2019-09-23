@@ -8,7 +8,6 @@ function addTodoAPI(todos) { //TODO: rewrite as update
             
             console.log('todo added');
         }, 500) //mock response
-        
     })
 }
 
@@ -40,7 +39,6 @@ function getTodosAPI() {
             resolve(todos);            
         }, 1000) //mock response
     })
-    
 }
 
 export { 
