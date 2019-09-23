@@ -24,7 +24,12 @@
 
 <script>
 import ToDoList from "./components/ToDoList";
-import ControlPanel from './components/ControlPanel'
+import ControlPanel from './components/ControlPanel';
+import { 
+  addTodoAPI, 
+  getTodosAPI, 
+  updateTodoAPI 
+} from './utils/localStorageAPI';
 
 export default {
   name: "app",
@@ -34,44 +39,32 @@ export default {
   },
   data() {
     return {
-      todos: [
-        {
-          id: Math.random(),
-          title: "First task",
-          description: "This is description",
-          date: new Date().toISOString().slice(0, 10),
-          checked: false,
-        },
-        {
-          id: Math.random(),
-          title: "First task",
-          description: "This is description",
-          date: new Date().toISOString().slice(0, 10),
-          checked: true,
-        }
-      ],
+      todos: [],
       showCheckList: false,
     };
   },
   methods: {
     addToDo({ title, description, date }) {
-      date = date || new Date().toISOString().slice(0, 10);
-      description = description;
-      const checked = false;
-      this.todos.push({
-        id: Math.random(),
+      const newTodo = {
         title,
-        description,
-        date,
-        checked
-      });
+        date: date || new Date().toISOString().slice(0, 10),
+        description: description || '',
+        checked: false,
+        id: Math.random(),
+      }
+      
+      addTodoAPI([...this.todos, newTodo])
+      .then(response => this.todos.push(response));
     },
     handleCheck(id) {
-      const currentTodo = this.todos.find(todo => {
-        return todo.id === id;
-      });
-      
-      currentTodo.checked = !currentTodo.checked;
+      updateTodoAPI(id)
+        .then(response => {
+            const currentTodo = this.todos.find(todo => {
+              return todo.id === response.id;
+            });
+
+            currentTodo.checked = response.checked;
+        })
     },
     checkedInitialization() {
       return this.todos.filter(todo => {
@@ -86,6 +79,10 @@ export default {
     handleCheckedToDoClick() {
       this.showCheckList = !this.showCheckList;
     }
+  },
+  created() {
+    getTodosAPI()
+      .then(response => this.todos = response);
   }
 };
 </script>
