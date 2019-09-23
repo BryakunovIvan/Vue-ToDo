@@ -117,7 +117,13 @@ export default {
   border: 1px solid rgb(221, 221, 221);
   border-radius: 15px;
 }
+.checked-to-do .todo:first-child{
+  margin: 5px auto 0;
+}
+.checked-to-do .todo {
+  margin: 10px auto 0;
+}
 .main-to-do-list {
-  min-height: 400px; /*TODO*/
+  min-height: 50px;
 }
 </style>
